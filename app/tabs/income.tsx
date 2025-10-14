@@ -16,6 +16,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import AddIncomeModal from "../components/income/addIncome";
 import IncomeHistory from "../components/income/incomeHistory";
 import IncomeList from "../components/income/incomeList";
+import CategoriesAmountDisplay from "../components/categoriesAmoutDisplay";
 
 export default function income() {
   const [userCredentialsID, setUserCredentialsID] =
@@ -125,36 +126,17 @@ export default function income() {
       </View>
 
       {/**Income Category */}
-      <View className="flex flex-row flex-wrap justify-between bg-[#FAF7F0] py-6 px-4 rounded-2xl">
-        <View className="w-full mb-3">
-          <Text className="text-base font-semibold">Income Categories</Text>
-        </View>
-
-        <View className="w-[46%] py-1 px-2 justify-center items-center bg-[#F2ECEC] rounded-lg mb-3">
-          <Text className="text-sm font-medium">Work</Text>
-          <Text className="text-sm text-green-600 font-medium">₱ {workIncome}</Text>
-        </View>
-
-        <View className="w-[46%] py-1 px-2 justify-center items-center bg-[#F2ECEC] rounded-lg mb-3">
-          <Text className="text-sm font-medium">Savings</Text>
-          <Text className="text-sm text-green-600 font-medium">₱ {savingIncome}</Text>
-        </View>
-
-        <View className="w-[46%] py-1 px-2 justify-center items-center bg-[#F2ECEC] rounded-lg mb-3">
-          <Text className="text-sm font-medium">Investments</Text>
-          <Text className="text-sm text-green-600 font-medium">₱ {investmentIncome}</Text>
-        </View>
-
-        <View className="w-[46%] py-1 px-2 justify-center items-center bg-[#F2ECEC] rounded-lg mb-3">
-          <Text className="text-sm font-medium">Side Hustle</Text>
-          <Text className="text-sm text-green-600 font-medium">₱ {sideHustleIncome}</Text>
-        </View>
-
-        <View className="w-[46%] py-1 px-2 justify-center items-center bg-[#F2ECEC] rounded-lg mb-3">
-          <Text className="text-sm font-medium">Other</Text>
-          <Text className="text-sm text-green-600 font-medium">₱ {otherIncome}</Text>
-        </View>
-      </View>
+      <CategoriesAmountDisplay
+        title="Income Categories"
+        color="green"
+        categories={[
+          {label: "Work", amount: workIncome},
+          {label: "Saving", amount: savingIncome},
+          {label: "Investment", amount: investmentIncome},
+          {label: "Side Hustle", amount: sideHustleIncome},
+          {label: "Other", amount: otherIncome}
+        ]}
+      />
 
       {/*Income List */}
       <View className="flex-1 gap-2">
