@@ -8,6 +8,7 @@ import { useMutation } from "convex/react";
 import { useEffect, useState } from "react";
 import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
 import LoadingScreen from "../Loading";
+import PickerCategory from "../pickerCategory";
 
 type IncomeCategory =
   | "Work"
@@ -124,19 +125,11 @@ export default function addIncome({onClose} : Props) {
       </View>
 
       {/*Income Category View*/}
-      <Text className="font-semibold mt-2">Category:</Text>
-      <View className="border border-black rounded-lg overflow-hidden">
-        <Picker
-          selectedValue={incomeCategoryValue}
-          onValueChange={(itemValue) => setIncomeCategoryValue(itemValue)}
-        >
-          <Picker.Item label="Work" value="Work" />
-          <Picker.Item label="Investment" value="Investment" />
-          <Picker.Item label="Savings" value="Savings" />
-          <Picker.Item label="Side Hustle" value="Side Hustle" />
-          <Picker.Item label="Other" value="Other" />
-        </Picker>
-      </View>
+      <PickerCategory 
+        type="income"
+        selectedValue={incomeCategoryValue}
+        onValueChange={(itemValue) => setIncomeCategoryValue(itemValue as IncomeCategory)}
+      />
 
       {/* Frequency */}
       <Text className="font-semibold mt-2">Frequency</Text>

@@ -7,6 +7,7 @@ import { useMutation } from "convex/react";
 import { useEffect, useState } from "react";
 import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
 import LoadingScreen from "../Loading";
+import PickerCategory from "../pickerCategory";
 type ExpensesCategory = "Insurance" | "Bills" | "Game" | "Grocery" | "Other";
 type Frequency = "OneTime" | "Monthly";
 type Props = {
@@ -108,19 +109,11 @@ export default function addExpenses({ closeModal }: Props) {
       </View>
 
       {/*Expenses Category*/}
-      <Text className="font-bold mt-2">Category</Text>
-      <View className="border border-black rounded-lg overflow-hidden">
-        <Picker
-          selectedValue={expensesCategoryValue}
-          onValueChange={(itemValue) => setExpensesCategoryValue(itemValue)}
-        >
-          <Picker.Item label="Insurance" value="Insurance" />
-          <Picker.Item label="Bills" value="Bills" />
-          <Picker.Item label="Game" value="Game" />
-          <Picker.Item label="Grocery" value="Grocery" />
-          <Picker.Item label="Other" value="Other" />
-        </Picker>
-      </View>
+      <PickerCategory 
+        type="expenses"
+        selectedValue={expensesCategoryValue}
+        onValueChange={(itemValue) => setExpensesCategoryValue(itemValue as ExpensesCategory)}
+      />
 
       {/** Frequency */}
       <Text className="font-semibold mt-2">Frequency</Text>

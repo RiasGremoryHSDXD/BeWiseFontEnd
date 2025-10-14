@@ -5,6 +5,7 @@ import { Picker } from '@react-native-picker/picker';
 import { useMutation } from "convex/react";
 import React, { useEffect, useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import PickerCategory from "../pickerCategory";
 
 type UpdateExpensesProps = {
     expensesID?: Id<'expenses'>
@@ -90,21 +91,11 @@ export default function UpdateExpenses({expensesID, expensesName, expensesCatego
         >
         </TextInput>
 
-        <Text className="font-semibold">Category</Text>
-        <View
-            className="border border-black rounded-lg overflow-hidden"
-        >
-            <Picker
-                selectedValue={newExpensesCategoryValue}
-                onValueChange={(itemValue) => setNewExpensesCategoryValue(itemValue)}
-            >
-                <Picker.Item label='Insurance' value='Insurance'/>
-                <Picker.Item label='Bills' value='Bills'/>
-                <Picker.Item label='Game' value='Game'/>
-                <Picker.Item label='Grocery' value='Grocery'/>
-                <Picker.Item label='Other' value='Other'/>
-            </Picker>
-        </View>
+        <PickerCategory 
+            type="expenses"
+            selectedValue={newExpensesCategoryValue}
+            onValueChange={(itemValue) => setNewExpensesCategoryValue(itemValue as ExpensesCategory)}
+        />
 
         <Text className="font-semibold">Amount</Text>
         <TextInput

@@ -5,7 +5,7 @@ import { Picker } from '@react-native-picker/picker'
 import { useMutation } from 'convex/react'
 import React, { useEffect, useState } from 'react'
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native'
-
+import PickerCategory from '../pickerCategory'
 type UpdateIncomeProps = {
     incomeID?: Id<"income">
     incomeName?: string
@@ -91,21 +91,11 @@ export default function UpdateIncome({incomeID, incomeName, incomeCategory, inco
         >
         </TextInput>
 
-        <Text className="font-semibold">Category</Text>
-        <View 
-            className="border border-black rounded-lg overflow-hidden"
-        >
-            <Picker
-                selectedValue={newIncomeCategory}
-                onValueChange={(itemValue) => setNewIncomeCategory(itemValue)}
-            >
-                <Picker.Item label='Work' value='Work'/>
-                <Picker.Item label='Investment' value='Investment' />
-                <Picker.Item label='Savings' value='Savings' />
-                <Picker.Item label='Side Hustle' value='Side Hustle'/>
-                <Picker.Item label='Other' value='Other' />
-            </Picker>
-        </View>
+        <PickerCategory 
+            type='income'
+            selectedValue={newIncomeCategory}
+            onValueChange={(itemValue) => setNewIncomeCategory(itemValue as incomeCategory)}
+        />
 
         <Text className="font-semibold">Amount</Text>
         <TextInput 
