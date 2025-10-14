@@ -6,6 +6,8 @@ import { useMutation } from 'convex/react'
 import React, { useEffect, useState } from 'react'
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import PickerCategory from '../pickerCategory'
+import FrequencyPicker from '../frequency'
+
 type UpdateIncomeProps = {
     incomeID?: Id<"income">
     incomeName?: string
@@ -114,18 +116,10 @@ export default function UpdateIncome({incomeID, incomeName, incomeCategory, inco
         </TextInput>
 
 
-        <Text className="font-semibold">Frequency</Text>
-        <View
-            className='border border-black rounded-lg overflow-hidden'
-        >
-            <Picker
-                selectedValue={newFrequency}
-                onValueChange={(itemValue) => setNewFrequency(itemValue)}
-            >
-                <Picker.Item label='OneTime' value='OneTime'/>
-                <Picker.Item label='Monthly' value='Monthly'/>
-            </Picker>
-        </View>
+        <FrequencyPicker 
+            value={newFrequency}
+            onChange={(itemValue) => setNewFrequency(itemValue as Frequency)}
+        />
 
         <View
             className='flex flex-row justify-between'

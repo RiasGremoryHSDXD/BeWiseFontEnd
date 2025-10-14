@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
 import LoadingScreen from "../Loading";
 import PickerCategory from "../pickerCategory";
+import FrequencyPicker from "../frequency";
 
 type IncomeCategory =
   | "Work"
@@ -132,16 +133,10 @@ export default function addIncome({onClose} : Props) {
       />
 
       {/* Frequency */}
-      <Text className="font-semibold mt-2">Frequency</Text>
-      <View className="border border-black rounded-lg overflow-hidden">
-        <Picker
-          selectedValue={frequency}
-          onValueChange={(itemValue) => setFrequency(itemValue)}
-        >
-          <Picker.Item label="OneTime" value="OneTime" />
-          <Picker.Item label="Monthly" value="Monthly" />
-        </Picker>
-      </View>
+      <FrequencyPicker
+        value={frequency}
+        onChange={(itemValue) => setFrequency(itemValue as Frequency)}
+      />
 
       {/* expectedPayOut */}
       <View className="flex flex-row justify-between">
