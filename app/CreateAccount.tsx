@@ -3,6 +3,8 @@ import { Ionicons } from "@react-native-vector-icons/ionicons";
 import { useMutation, useQuery } from "convex/react";
 import { useState } from "react";
 import { Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
+import EmailTextField from "./components/emailTextField";
+import PasswordTextField from "./components/passwordTextField";
 
 export default function CreateAccount() {
   const [username, setUserName] = useState<string>("");
@@ -105,58 +107,25 @@ export default function CreateAccount() {
         </View>
 
         <View>
-          <TextInput
-            className={`text-base w-full px-8 py-5 bg-[#FAF7F0] rounded-3xl ${
-              errorFields.email ? "border border-red-500" : ""
-            }`}
-            placeholder="Email Address"
-            placeholderTextColor={errorFields.email ? "#ef4444" : ""}
-            keyboardType="email-address"
+          <EmailTextField 
             value={email}
             onChangeText={(text) => {
-              setEmail(text.trim().toLocaleLowerCase());
-              clearFieldError("email");
+              setEmail(text)
+              clearFieldError("email")
             }}
+            error={errorFields.email}
           />
-          {errorFields.email && (
-            <Text className="text-red-500 text-sm ml-2 ">
-              Email is required
-            </Text>
-          )}
         </View>
 
         <View className="w-full">
-          <View
-            className={`flex flex-row items-center w-full px-4 py-2 rounded-3xl bg-[#FAF7F0] ${
-              errorFields.password ? "border border-red-500" : ""
-            }`}
-          >
-            <TextInput
-              className="flex-1 text-base px-2 py-3"
-              placeholder="Password"
-              placeholderTextColor={errorFields.password ? "#ef4444" : ""}
-              secureTextEntry={!showPassword}
-              value={password}
-              onChangeText={(text) => {
-                setPassword(text);
-                clearFieldError("password");
-              }}
-            />
-            <TouchableOpacity onPress={togglePassword}>
-              <Ionicons
-                name={showPassword ? "eye-off" : "eye"}
-                size={25}
-                color="#000"
-              />
-            </TouchableOpacity>
-          </View>
-
-          {/* Error Message */}
-          {errorFields.password && (
-            <Text className="text-red-500 text-sm ml-2 mt-1">
-              Password is required
-            </Text>
-          )}
+          <PasswordTextField
+            value={password}
+            onChangeText={(text) => {
+              setPassword(text)
+              clearFieldError("password")
+            }}
+            error={errorFields.password}
+          />
         </View>
 
 
